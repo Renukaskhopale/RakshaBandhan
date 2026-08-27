@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A cinematic Raksha Bandhan Invitation — a celebration of sibling love." />
+  <title>Raksha Bandhan — A Bond Called Forever</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700&family=Noto+Serif+Devanagari:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CustomEase.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── AUDIO ── -->
+  <audio id="audio-bg" loop preload="none">
+    <source src="assets/audio/background.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="audio-emotional" loop preload="none">
+    <source src="assets/audio/emotional.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="audio-celebration" loop preload="none">
+    <source src="assets/audio/celebration.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ── MUTE BUTTON ── -->
+  <button id="mute-btn" class="mute-btn" aria-label="Toggle audio">
+    <span class="mute-icon">♪</span>
+  </button>
+
+  <!-- ── SCENE INDICATORS ── -->
+  <nav class="scene-indicators" aria-label="Scene navigation">
+    <button class="dot active" data-scene="0" aria-label="Scene 0"></button>
+    <button class="dot" data-scene="1" aria-label="Scene 1"></button>
+    <button class="dot" data-scene="2" aria-label="Scene 2"></button>
+    <button class="dot" data-scene="3" aria-label="Scene 3"></button>
+    <button class="dot" data-scene="4" aria-label="Scene 4"></button>
+    <button class="dot" data-scene="5" aria-label="Scene 5"></button>
+    <button class="dot" data-scene="6" aria-label="Scene 6"></button>
+  </nav>
+
+  <!-- ── CINEMATIC CONTROLS ── -->
+  <div class="cinema-nav" role="navigation" aria-label="Scene controls">
+    <button class="nav-btn" id="btn-prev" aria-label="Previous scene">← BACK</button>
+    <button class="nav-btn" id="btn-next" aria-label="Next scene">NEXT →</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SCENE 0 — INTRO / LOADING
+  ══════════════════════════════════════════ -->
+  <section class="scene" id="scene-0" aria-label="Intro">
+    <canvas id="intro-canvas" aria-hidden="true"></canvas>
+    <div class="scene-content scene-0-content">
+      <div class="diya-wrap" aria-hidden="true">
+        <div class="diya">
+          <div class="diya-flame"></div>
+          <div class="diya-glow"></div>
+        </div>
+      </div>
+      <div class="intro-lines" role="presentation">
+        <p class="line l0">Some bonds are written in the heart…</p>
+        <p class="line l1">Some promises are made for a lifetime.</p>
+        <div class="line-break" aria-hidden="true"></div>
+        <p class="line l2">A thread.</p>
+        <p class="line l3">A promise.</p>
+        <p class="line l4">A bond called Sibling Love.</p>
+        <div class="line-break" aria-hidden="true"></div>
+        <h1 class="line raksha-title l5">Raksha Bandhan</h1>
+      </div>
+      <button class="begin-btn" id="begin-btn" aria-label="Begin the journey">
+        <span class="btn-text">Begin the Journey</span>
+        <span class="btn-glow" aria-hidden="true"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCENE 1 — CHILDHOOD MEMORIES
+  ══════════════════════════════════════════ -->
+  <section class="scene" id="scene-1" aria-label="Childhood memories">
+    <div class="scene-video-bg" id="mem-video-wrap">
+      <video id="mem-video" playsinline muted loop autoplay aria-hidden="true">
+        <source src="assets/videos/memories.mp4" type="video/mp4" />
+      </video>
+      <div class="video-fallback mem-bg" aria-hidden="true"></div>
+    </div>
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="warm-overlay" aria-hidden="true"></div>
+
+    <div class="memory-photos" aria-label="Childhood photo gallery">
+      <div class="photo-card card-1">
+        <img src="assets/images/childhood-1.jpg" alt="Childhood memory 1" loading="lazy" onerror="this.parentElement.classList.add('no-img')" />
+        <div class="photo-shimmer" aria-hidden="true"></div>
+      </div>
+      <div class="photo-card card-2">
+        <img src="assets/images/childhood-2.jpg" alt="Childhood memory 2" loading="lazy" onerror="this.parentElement.classList.add('no-img')" />
+        <div class="photo-shimmer" aria-hidden="true"></div>
+      </div>
+      <div class="photo-card card-3">
+        <img src="assets/images/childhood-3.jpg" alt="Childhood memory 3" loading="lazy" onerror="this.parentElement.classList.add('no-img')" />
+        <div class="photo-shimmer" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="scene-content memory-text">
+      <p class="mem-line ml0">From little fights…</p>
+      <p class="mem-line ml1">To countless memories…</p>
+      <p class="mem-line ml2">From stealing each other's things…</p>
+      <p class="mem-line ml3">To secretly protecting each other…</p>
+      <p class="mem-line ml4 em-line">Somehow, we grew up.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCENE 2 — THE BOND
+  ══════════════════════════════════════════ -->
+  <section class="scene" id="scene-2" aria-label="The eternal bond">
+    <canvas id="bond-canvas" aria-hidden="true"></canvas>
+    <div class="petals-layer" id="petals-layer" aria-hidden="true"></div>
+
+    <div class="scene-content bond-text">
+      <p class="bond-line bl0">Years may pass…</p>
+      <p class="bond-line bl1">Childhood may become a memory…</p>
+      <p class="bond-line bl2">But some bonds never change.</p>
+      <div class="bond-divider" aria-hidden="true"></div>
+      <h2 class="bond-title bl3">Brother &amp; Sister</h2>
+      <p class="bond-sub bl4">Two hearts. One forever bond.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCENE 3 — RAKHI REVEAL
+  ══════════════════════════════════════════ -->
+  <section class="scene" id="scene-3" aria-label="Rakhi reveal">
+    <canvas id="rakhi-canvas" aria-hidden="true"></canvas>
+    <div class="scene-content rakhi-reveal-text">
+      <p class="rv-line rv0">One thread.</p>
+      <p class="rv-line rv1">A thousand memories.</p>
+      <p class="rv-line rv2">One promise.</p>
+      <p class="rv-line rv3 forever-word">Forever.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCENE 4 — THE BLAST / TRANSFORMATION
+  ══════════════════════════════════════════ -->
+  <section class="scene" id="scene-4" aria-label="Transformation">
+    <canvas id="blast-canvas" aria-hidden="true"></canvas>
+    <div class="countdown-wrap" id="countdown-wrap" aria-live="assertive">
+      <span class="countdown-num" id="cnum">3</span>
+    </div>
+    <div class="blast-overlay" id="blast-overlay" aria-hidden="true"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCENE 5 — MAIN INVITATION
+  ══════════════════════════════════════════ -->
+  <section class="scene" id="scene-5" aria-label="Invitation">
+    <canvas id="invite-canvas" aria-hidden="true"></canvas>
+    <div class="mandala-bg" aria-hidden="true"></div>
+
+    <div class="scene-content invite-content">
+      <p class="ganesh-line" lang="hi">॥ श्री गणेशाय नमः ॥</p>
+      <h1 class="invite-title">RAKSHA BANDHAN</h1>
+      <p class="invite-sub">A Celebration of Love, Laughter &amp; Togetherness</p>
+      <div class="invite-divider" aria-hidden="true"></div>
+
+      <p class="invite-dear">Dear Family &amp; Friends,</p>
+      <p class="invite-body">
+        With hearts full of love and happiness,<br />
+        we invite you to celebrate the beautiful<br />
+        bond of Raksha Bandhan with us.
+      </p>
+
+      <div class="event-cards" role="list">
+        <div class="event-card" role="listitem">
+          <span class="card-label">DATE</span>
+          <span class="card-value" id="event-date"><!-- Add Date --></span>
+        </div>
+        <div class="event-card" role="listitem">
+          <span class="card-label">TIME</span>
+          <span class="card-value" id="event-time"><!-- Add Time --></span>
+        </div>
+        <div class="event-card" role="listitem">
+          <span class="card-label">VENUE</span>
+          <span class="card-value" id="event-venue"><!-- Add Venue --></span>
+        </div>
+      </div>
+
+      <div class="invite-actions">
+        <button class="join-btn" id="join-btn">
+          <span>Join the Celebration ❤️</span>
+          <span class="ripple-layer" aria-hidden="true"></span>
+        </button>
+        <a class="maps-btn" id="maps-btn" href="#" target="_blank" rel="noopener" aria-label="Open venue on Google Maps">
+          📍 View on Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCENE 6 — EMOTIONAL ENDING
+  ══════════════════════════════════════════ -->
+  <section class="scene" id="scene-6" aria-label="Emotional ending">
+    <div class="scene-video-bg" id="end-video-wrap">
+      <video id="end-video" playsinline muted loop autoplay aria-hidden="true">
+        <source src="assets/videos/ending.mp4" type="video/mp4" />
+      </video>
+      <div class="video-fallback end-bg" aria-hidden="true"></div>
+    </div>
+    <div class="warm-overlay dark-overlay" aria-hidden="true"></div>
+
+    <canvas id="ending-canvas" aria-hidden="true"></canvas>
+
+    <div class="scene-content ending-content">
+      <p class="end-line el0">Distance may change.</p>
+      <p class="end-line el1">Time may change.</p>
+      <p class="end-line el2">Life may change.</p>
+      <p class="end-line el3">But a sibling's place in your heart…</p>
+      <h2 class="end-never el4">NEVER CHANGES. ❤️</h2>
+      <p class="end-wish el5">Happy Raksha Bandhan</p>
+      <p class="end-love el6">With Love ❤️</p>
+      <div class="end-rakhi el7" aria-hidden="true">
+        <div class="end-rakhi-inner"></div>
+        <div class="end-rakhi-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
