@@ -1,0 +1,718 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.page {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-content {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'BaksoMenu TTF';
+    src: url('Fonts/BaksoMenu%20TTF.ttf') format('truetype');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Hello';
+    src: url('Fonts/Hello.ttf') format('truetype');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'adelia';
+    src: url('Fonts/adelia.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* PAGE 1 - OPEN OUR DOOR */
+.page-1 {
+    background: linear-gradient(135deg, #fdf6f0 0%, #f5e6d3 100%);
+}
+
+.mantra-line {
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: #8b7355;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.hello-text {
+    font-size: 50px;
+    font-weight: 500;
+    color: #d4a574;
+    margin-bottom: 20px;
+    margin-top: 24px;
+    letter-spacing: 3px;
+    font-family: 'BaksoMenu TTF', sans-serif;
+}
+
+.people-text {
+    font-family: 'adelia';
+    font-size: 110px;
+    color: #002D5B;
+    line-height: 0.9;
+    margin-top: -30px;
+    margin-bottom: 50px;
+}
+
+.challenge-text {
+    font-size: 24px;
+    color: #6b5b4a;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* --- Traditional Door --- */
+.door-scene {
+    position: relative;
+    width: 260px;
+    height: 340px;
+    margin: 0 auto 45px;
+    perspective: 1400px;
+}
+
+.door-glow {
+    position: absolute;
+    inset: -60px;
+    background: radial-gradient(circle, rgba(212, 165, 116, 0.65) 0%, rgba(212, 165, 116, 0) 70%);
+    opacity: 0;
+    transition: opacity 1.1s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.door-glow.active {
+    opacity: 1;
+}
+
+.door-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #002D5B 0%, #01305e 60%, #012047 100%);
+    border-radius: 130px 130px 10px 10px;
+    padding: 10px;
+    box-shadow: 0 25px 55px rgba(0, 45, 91, 0.45);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.door-frame::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 2px solid #d4a574;
+    border-radius: 122px 122px 6px 6px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.door-leaf {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1.3s cubic-bezier(.65, 0, .35, 1);
+}
+
+.door-left {
+    left: 0;
+    transform-origin: left center;
+}
+
+.door-right {
+    right: 0;
+    transform-origin: right center;
+}
+
+.door-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #fdf6f0 0%, #f5e6d3 100%);
+    border: 3px solid #d4a574;
+    box-sizing: border-box;
+}
+
+.door-left .door-panel {
+    border-radius: 128px 0 0 0;
+    border-right-width: 1.5px;
+}
+
+.door-right .door-panel {
+    border-radius: 0 128px 0 0;
+    border-left-width: 1.5px;
+}
+
+.door-inset {
+    position: absolute;
+    inset: 14px;
+    border: 2px solid rgba(212, 165, 116, 0.6);
+    border-radius: 100px 100px 4px 4px;
+}
+
+.door-inset::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(139, 115, 85, 0.35);
+    border-radius: 90px 90px 4px 4px;
+}
+
+.door-handle {
+    position: absolute;
+    top: 52%;
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle at 35% 35%, #f3d5ab, #d4a574 60%, #b8865c 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.8);
+}
+
+.door-left .door-handle {
+    right: 12px;
+}
+
+.door-right .door-handle {
+    left: 12px;
+}
+
+.door-step {
+    position: absolute;
+    left: 50%;
+    bottom: -14px;
+    transform: translateX(-50%);
+    width: 78%;
+    height: 10px;
+    background: linear-gradient(90deg, #d4a574, #b8865c, #d4a574);
+    border-radius: 6px;
+    opacity: 0.8;
+}
+
+/* Opened state */
+.door-scene.opened .door-left {
+    transform: rotateY(-112deg);
+}
+
+.door-scene.opened .door-right {
+    transform: rotateY(112deg);
+}
+
+.instruction-text {
+    font-size: 18px;
+    color: #6b5b4a;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.type-year-btn {
+    background: #002D5B;
+    color: #fff;
+    border: none;
+    padding: 15px 45px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.type-year-btn:hover {
+    background: #b8865c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212, 165, 116, 0.4);
+}
+
+.type-year-btn:active {
+    transform: translateY(0);
+}
+
+.type-year-btn:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+}
+
+/* ============================================
+   PAGE 1.5 — CINEMATIC HOME ZOOM TRANSITION
+   ============================================ */
+
+.page-transition {
+    position: fixed;
+    inset: 0;
+    min-height: 100vh;
+    width: 100vw;
+    padding: 0;
+    background: #000;
+    z-index: 100;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: none; /* override default page fadeIn */
+}
+
+/* Dark vignette overlay with navy tint — matches Page 1 palette */
+.cinematic-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 20, 45, 0.10) 0%,
+        rgba(0, 20, 45, 0.55) 60%,
+        rgba(0, 10, 25, 0.90) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Container that clips the image and drives the zoom */
+.home-zoom-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.home-zoom-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(0.18) translateY(8%);
+    opacity: 0;
+    border-radius: 12px;
+    transition: none; /* controlled via JS classList */
+    will-change: transform, opacity;
+}
+
+/* Phase 1: image appears small, fades in */
+.home-zoom-img.appear {
+    opacity: 1;
+    transform: scale(0.18) translateY(8%);
+    transition: opacity 0.7s ease;
+}
+
+/* Phase 2: slow cinematic zoom toward viewer */
+.home-zoom-img.zoom-in {
+    opacity: 1;
+    transform: scale(1) translateY(0%);
+    border-radius: 0;
+    transition:
+        transform 2.8s cubic-bezier(0.25, 0.1, 0.15, 1.0),
+        border-radius 2.0s ease,
+        opacity 0.5s ease;
+}
+
+/* Golden fade-to-warm overlay that blooms at the end */
+.golden-fade-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(212, 165, 116, 0.85) 0%,
+        rgba(180, 120, 60, 0.70) 40%,
+        rgba(0, 45, 91, 0.95) 100%
+    );
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity 1.0s ease-in;
+}
+
+.golden-fade-overlay.active {
+    opacity: 1;
+}
+
+/* PAGE 2 - MAIN INVITATION */
+.page-2 {
+    background: #002D5B;
+}
+
+.milestone-text {
+    font-size: 16px;
+    color: #d4a574;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+.birthday-person {
+    font-size: 90px;
+    font-weight: 400;
+    color: #e8e6b2;
+    margin-bottom: 10px;
+    line-height: 0.8;
+    font-family: 'Allura', cursive;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ceremony-text {
+    max-width: 640px;
+    margin: 30px auto 10px;
+}
+
+.intro-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #f0e4d6;
+    font-weight: 300;
+    margin-bottom: 18px;
+}
+
+.event-date-card {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    background: #002D5B;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 200px;
+}
+
+/* Left and right sections */
+.date-side {
+    flex: 1;
+    height: 155px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+/* Horizontal lines */
+.date-side::before,
+.date-side::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.8);
+}
+
+.date-side::before {
+    top: 25%;
+}
+
+.date-side::after {
+    bottom: 25%;
+}
+
+.date-side span {
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 2;
+    background: #002D5B;
+    padding: 0 20px;
+}
+
+/* Center section */
+.date-center {
+    width: 240px;
+    height: 180px;
+
+    border-left: 2px solid rgba(255,255,255,0.8);
+    border-right: 2px solid rgba(255,255,255,0.8);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-center .month {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: #ffffff;
+}
+
+.date-center .day {
+    font-size: 80px;
+    font-weight: 300;
+    line-height: 0.95;
+    color: #ffffff;
+}
+
+.date-center .year {
+    font-size: 28px;
+    letter-spacing: 5px;
+    color: #ffffff;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .event-date-card {
+        min-height: 180px;
+    }
+
+    .date-center {
+        width: 140px;
+        height: 150px;
+    }
+
+    .date-center .month {
+        font-size: 18px;
+        letter-spacing: 3px;
+    }
+
+    .date-center .day {
+        font-size: 65px;
+    }
+
+    .date-center .year {
+        font-size: 18px;
+    }
+
+    .date-side {
+        height: 120px;
+    }
+
+    .date-side span {
+        font-size: 14px;
+        letter-spacing: 1.5px;
+        padding: 0 8px;
+        text-align: center;
+    }
+}
+
+.venue-details {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.with-love-label {
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #d4a574;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.host-name {
+    color: #fff;
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.host-contact {
+    color: #d4a574;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .page {
+        padding: 20px 16px;
+    }
+
+    .page-content {
+        max-width: 100%;
+    }
+
+    .mantra-line {
+        font-size: 13px;
+    }
+
+    .hello-text {
+        font-size: 38px;
+    }
+
+    .people-text {
+        font-size: 72px;
+        margin-bottom: 24px;
+    }
+
+    .challenge-text {
+        font-size: 18px;
+        margin-top: 16px;
+        margin-bottom: 24px;
+    }
+
+    .door-scene {
+        width: 200px;
+        height: 270px;
+        margin-bottom: 32px;
+    }
+
+    .birthday-person {
+        font-size: 40px;
+    }
+
+    .milestone-text {
+        font-size: 14px;
+    }
+
+    .intro-text {
+        font-size: 15px;
+    }
+
+    .host-name {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hello-text {
+        font-size: 32px;
+    }
+
+    .people-text {
+        font-size: 56px;
+    }
+
+    .door-scene {
+        width: 170px;
+        height: 230px;
+    }
+
+    .type-year-btn {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .birthday-person {
+        font-size: 32px;
+    }
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .home-zoom-img.zoom-in {
+        transform: scale(1.0);
+        transition: opacity 0.5s ease;
+    }
+}
+/* =====================================================
+   HOME IMAGE - PORTRAIT / MOBILE STYLE
+   ===================================================== */
+
+.home-zoom-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #290c57;
+}
+
+.home-zoom-img {
+    height: 100%;
+    width: auto;
+
+    /* Keep complete height of the house */
+    object-fit: contain;
+    object-position: center center;
+
+    opacity: 0;
+    transform: scale(0.55);
+
+    border-radius: 0;
+    will-change: transform, opacity;
+}
+
+/* Image appears */
+.home-zoom-img.appear {
+    opacity: 1;
+    transform: scale(0.55);
+    transition: opacity 0.7s ease;
+}
+
+/* Final zoom */
+.home-zoom-img.zoom-in {
+    opacity: 1;
+
+    /* Keep house properly framed */
+    transform: scale(1);
+
+    height: 100%;
+    width: auto;
+
+    object-fit: contain;
+    object-position: center center;
+
+    border-radius: 0;
+
+    transition:
+        transform 2.8s cubic-bezier(0.25, 0.1, 0.15, 1),
+        opacity 0.5s ease;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .home-zoom-img {
+        height: 100dvh;
+        width: auto;
+
+        object-fit: contain;
+        object-position: center center;
+    }
+
+    .home-zoom-img.zoom-in {
+        height: 100dvh;
+        width: auto;
+        transform: scale(1);
+    }
+}
